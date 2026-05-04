@@ -1,5 +1,7 @@
+import time
+
 recipe_data = {
-    "name": "Гости будут драться за эти блины!",
+    "name": f"Гости будут драться за эти блины! {time.time()}",
     "ingredient_name": "сыр адыгейский",
     "ingredient_gram": 89,
     "time": 30,

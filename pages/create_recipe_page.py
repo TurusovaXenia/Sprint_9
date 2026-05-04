@@ -1,6 +1,7 @@
 import data
 from locators.create_recipe_page_locators import CreateRecipePageLocators
 from pages.base_page import BasePage
+from pages.recipe_data_page import RecipeDataPage
 from utils import helpers
 
 
@@ -29,6 +30,7 @@ class CreateRecipePage(BasePage):
 
     def click_create_recipe_button(self):
         self.click_element(CreateRecipePageLocators.CREATE_RECIPE)
+        return self.navigate_to(RecipeDataPage)
 
     def fill_recipe_form(self):
         self.fill_recipe_name(data.recipe_data["name"])

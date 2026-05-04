@@ -23,6 +23,10 @@ class BasePage:
         self.wait_until_visible(locator)
         return self.driver.find_element(*locator)
 
+    def find_elements_with_wait(self, locator):
+        self.wait.until(EC.visibility_of_all_elements_located(locator))
+        return self.driver.find_elements(*locator)
+
     def click_element(self, locator):
         self.wait.until(EC.element_to_be_clickable(locator))
         self.driver.find_element(*locator).click()
@@ -30,6 +34,9 @@ class BasePage:
     def fill_input(self, locator, text):
         self.wait_until_visible(locator)
         self.driver.find_element(*locator).send_keys(text)
+
+    def get_text(self, locator):
+        return self.find_element_with_wait(locator).text
 
     def upload_file_to_element(self, locator, file_path):
         self.driver.find_element(*locator).send_keys(file_path)

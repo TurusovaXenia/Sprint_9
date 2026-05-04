@@ -1,3 +1,4 @@
+import allure
 import pytest
 from selenium import webdriver
 
@@ -32,19 +33,20 @@ def new_user_data():
 
 @pytest.fixture
 def registered_user(new_user_data, header, login_page):
-    login_page.open()
-    create_account_page = header.go_to_create_account_page()
-    create_account_page.fill_registration_form(new_user_data)
-    create_account_page.click_create_account_button()
+    with allure.step("Подготовка пользователя"):
+        login_page.open()
+        create_account_page = header.go_to_create_account_page()
+        create_account_page.fill_registration_form(new_user_data)
+        create_account_page.click_create_account_button()
 
     return new_user_data
 
 
 @pytest.fixture
 def authorized_user_on_recipes_page(registered_user, login_page):
-    login_page.open()
-    login_page.fill_login_form(registered_user)
-    recipe_page = login_page.click_login_button()
+    with allure.step("Авторизация только что созданного пользователя"):
+        login_page.open()
+        login_page.fill_login_form(registered_user)
+        recipe_page = login_page.click_login_button()
 
     return recipe_page
-

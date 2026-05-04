@@ -1,8 +1,11 @@
+import allure
+
 from locators.recipe_data_page_locators import RecipeDataPageLocators
 from pages.base_page import BasePage
 
 
 class RecipeDataPage(BasePage):
+    @allure.step("Получение деталей о созданном рецепте")
     def get_created_recipe_details(self):
         self.wait_until_visible(RecipeDataPageLocators.RECIPE_TITLE)
 

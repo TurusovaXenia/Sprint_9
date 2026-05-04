@@ -1,4 +1,9 @@
+import allure
+
+
+@allure.suite("Страница 'Создание аккаунта'")
 class TestCreateAccountPage:
+    @allure.title("Проверка перехода на страницу авторизации при успешном создании аккаунта")
     def test_create_account_success(self, login_page, header, new_user_data):
         login_page.open()
         create_account_page = header.go_to_create_account_page()

@@ -1,4 +1,0 @@
-"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","2679","Проверка перехода на страницу авторизации при успешном создании аккаунта","tests","Mon May 04 16:57:39 UTC 2026","passed","Mon May 04 16:57:42 UTC 2026","TestCreateAccountPage","Страница 'Создание аккаунта'","",""
-"","782","Проверка успешной авторизации и перехода на страницу 'Рецепты'","tests","Mon May 04 16:57:51 UTC 2026","broken","Mon May 04 16:57:51 UTC 2026","TestLoginPage","Страница авторизации","",""
-"","3978","Проверка отображения карточки рецепта при успешном создании рецепта","tests","Mon May 04 16:57:44 UTC 2026","passed","Mon May 04 16:57:48 UTC 2026","TestCreateRecipePage","Страница 'Создание рецепта'","",""

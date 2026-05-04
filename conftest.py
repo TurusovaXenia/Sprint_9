@@ -1,3 +1,5 @@
+import os
+
 import allure
 import pytest
 from selenium import webdriver
@@ -9,7 +11,20 @@ from utils import helpers
 
 @pytest.fixture
 def driver():
-    driver = webdriver.Chrome()
+    selenoid_url = os.getenv("SELENOID_URL", "http://localhost:4444/wd/hub")
+
+    options = webdriver.ChromeOptions()
+    options.set_capability("browserName", "chrome")
+    options.set_capability("browserVersion", "128.0")
+    options.set_capability("selenoid:options", {
+        "enableVNC": True,  # Чтобы видеть экран в Selenoid UI
+        "enableVideo": False
+    })
+    driver = webdriver.Remote(
+        command_executor=selenoid_url,
+        options=options
+    )
+
     yield driver
     driver.quit()
 

@@ -1,0 +1,40 @@
+services:
+  selenoid:
+    image: "aerokube/selenoid:latest"
+    container_name: selenoid
+    ports:
+      - "4444:4444"
+    environment:
+      - DOCKER_API_VERSION=1.40
+    volumes:
+      - "./config:/etc/selenoid"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    command: ["-conf", "/etc/selenoid/config.json", "-container-network", "selenoid_net"]
+    networks:
+      - selenoid_net
+
+  selenoid-ui:
+    image: "aerokube/selenoid-ui:latest"
+    container_name: selenoid-ui
+    ports:
+      - "8081:8080"
+    command: ["--selenoid-uri", "http://selenoid:4444"]
+    networks:
+      - selenoid_net
+
+  tests:
+    build: .
+    container_name: tests_runner
+    depends_on:
+      - selenoid
+    networks:
+      - selenoid_net
+    environment:
+      - SELENOID_URL=http://selenoid:4444/wd/hub
+    volumes:
+      - ./allure-results:/app/allure-results
+    command: pytest tests/ --alluredir=allure-results
+
+networks:
+  selenoid_net:
+    name: selenoid_net

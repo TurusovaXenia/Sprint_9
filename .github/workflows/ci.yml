@@ -3,8 +3,11 @@ on:
   push:
     branches:
       - develop
+
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   checkout-and-run-tests:
@@ -27,9 +30,17 @@ jobs:
           allure_history: allure-history
           keep_reports: 5
 
-      - name: Deploy Report to GitHub Pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
         if: always()
-        uses: peaceiris/actions-gh-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        if: always()
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: allure-history
+            path: 'allure-history'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        if: always()

@@ -25,7 +25,7 @@ jobs:
         run: docker pull selenoid/vnc:chrome_128.0
 
       - name: Run tests in docker
-        run: docker compose run --build tests pytest --reruns 2 --reruns-delay 1
+        run: docker compose up --build --exit-code-from tests
 
       - name: Build Allure Report
         uses: simple-elf/allure-report-action@master

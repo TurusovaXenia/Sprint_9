@@ -1,6 +1,7 @@
 import os
 import random
 import string
+import time
 
 
 def generate_random_string(length):
@@ -17,7 +18,7 @@ def generate_random_email():
 def generate_user_data():
     first_name = generate_random_string(6)
     last_name = generate_random_string(7)
-    user_name = generate_random_string(15)
+    user_name = f"test_{int(time.time() * 1000)}"
     email = generate_random_email()
     password = generate_random_string(10)
 

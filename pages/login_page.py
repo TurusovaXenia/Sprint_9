@@ -24,12 +24,12 @@ class LoginPage(BasePage):
         self.click_element(LoginPageLocators.LOGIN_BUTTON)
         return self.navigate_to(RecipesPage)
 
-    @allure.step("Заполнение формы авторизации")
+    @allure.step("Заполнить форму авторизации")
     def fill_login_form(self, user_data):
         self.fill_username_field(user_data['user_name'])
         self.fill_password_field(user_data['password'])
 
-    @allure.step("Проверка отображения формы авторизации")
+    @allure.step("Проверить отображение формы авторизации")
     def is_login_form_visible(self):
         self.wait_until_visible(LoginPageLocators.LOGIN_FORM)
 

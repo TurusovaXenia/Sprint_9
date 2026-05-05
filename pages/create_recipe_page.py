@@ -10,9 +10,9 @@ from utils import helpers
 class CreateRecipePage(BasePage):
     @allure.step("Заполнить поле 'Название рецепта'")
     def fill_recipe_name(self, recipe_name):
-        self.fill_input(CreateRecipePageLocators.RECIPE_NAME, recipe_name)
+        self.fill_input(CreateRecipePageLocators.RECIPE_NAME_INPUT, recipe_name)
 
-    @allure.step("Выбор ингредиента")
+    @allure.step("Выбрать ингредиент")
     def select_ingredient(self, ingredient_name):
         self.fill_input(CreateRecipePageLocators.INGREDIENT_DROPDOWN, ingredient_name)
         self.click_element(CreateRecipePageLocators.SELECTED_INGREDIENT)
@@ -31,18 +31,18 @@ class CreateRecipePage(BasePage):
 
     @allure.step("Заполнить поле 'Описание рецепта'")
     def fill_recipe_description(self, recipe_description):
-        self.fill_input(CreateRecipePageLocators.RECIPE_DESCRIPTION, recipe_description)
+        self.fill_input(CreateRecipePageLocators.RECIPE_DESCRIPTION_INPUT, recipe_description)
 
     @allure.step("Загрузить фото рецепта")
-    def upload_recipe_foto(self, file_path):
+    def upload_recipe_photo(self, file_path):
         self.upload_file_to_element(CreateRecipePageLocators.UPLOAD_FILE_BUTTON, file_path)
 
     @allure.step("Клик кнопки 'Создать рецепт'")
     def click_create_recipe_button(self):
-        self.click_element(CreateRecipePageLocators.CREATE_RECIPE)
+        self.click_element(CreateRecipePageLocators.CREATE_RECIPE_BUTTON)
         return self.navigate_to(RecipeDataPage)
 
-    @allure.step("Заполнение данных рецепта")
+    @allure.step("Заполнить данные рецепта")
     def fill_recipe_form(self):
         self.fill_recipe_name(data.recipe_data["name"])
         self.select_ingredient(data.recipe_data["ingredient_name"])
@@ -50,4 +50,4 @@ class CreateRecipePage(BasePage):
         self.click_add_ingredient_button()
         self.fill_time_of_cooking(data.recipe_data["time"])
         self.fill_recipe_description(data.recipe_data["description"])
-        self.upload_recipe_foto(helpers.get_upload_file_path("bee.png"))
+        self.upload_recipe_photo(helpers.get_upload_file_path("bee.png"))

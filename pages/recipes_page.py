@@ -6,7 +6,7 @@ from pages.base_page import BasePage
 
 
 class RecipesPage(BasePage):
-    @allure.step("Проверка перехода на главную страницу и отображения кнопки 'Выход'")
+    @allure.step("Проверить переход на главную страницу и отображение кнопки 'Выход'")
     def is_recipes_page_visible(self):
         self.wait_until_visible(RecipesPageLocators.RECIPES_FORM)
 

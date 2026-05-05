@@ -33,7 +33,6 @@ services:
       - SELENOID_URL=http://selenoid:4444/wd/hub
     volumes:
       - ./allure-results:/app/allure-results
-    command: pytest tests/ --alluredir=allure-results
 
 networks:
   selenoid_net:

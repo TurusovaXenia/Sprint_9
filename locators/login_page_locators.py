@@ -6,4 +6,3 @@ class LoginPageLocators:
     PASSWORD_INPUT = (By.CSS_SELECTOR, "input[type='password']")
     LOGIN_BUTTON = (By.XPATH, ".//button[text()='Войти']")
     LOGIN_FORM = (By.XPATH, ".//h1[text()='Войти на сайт']")
-

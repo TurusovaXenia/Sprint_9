@@ -42,15 +42,11 @@ def login_page(driver):
 
 
 @pytest.fixture
-def new_user_data():
-    return helpers.generate_user_data()
-
-
-@pytest.fixture
-def registered_user(new_user_data, header, login_page):
+def registered_user(header, login_page):
     with allure.step("Подготовить пользователя"):
         login_page.open()
         create_account_page = header.click_create_account_button()
+        new_user_data = helpers.generate_user_data()
         create_account_page.fill_registration_form(new_user_data)
         create_account_page.click_create_account_button()
 
